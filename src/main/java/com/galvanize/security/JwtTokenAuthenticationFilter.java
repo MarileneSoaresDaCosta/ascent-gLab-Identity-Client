@@ -54,17 +54,11 @@ public class JwtTokenAuthenticationFilter extends  OncePerRequestFilter {
 
         try {	// exceptions might be thrown in creating the claims if for example the token is expired
 
-            Claims claims = null;
-            try {
-                // 4. Validate the token
-                claims = Jwts.parser()
-                        .setSigningKey(jwtProperties.getSecret().getBytes())
-                        .parseClaimsJws(token)
-                        .getBody();
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
+            // 4. Validate the token
+            Claims claims = Jwts.parser()
+                    .setSigningKey(jwtProperties.getSecret().getBytes())
+                    .parseClaimsJws(token)
+                    .getBody();
 
             String username = claims.getSubject();
             if(username != null) {
