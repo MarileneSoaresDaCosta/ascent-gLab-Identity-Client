@@ -28,15 +28,22 @@ can be found in `com.galvanize.security.WebSecurityConfig`, among the rest of th
   - `implementation 'org.springframework.boot:spring-boot-starter-security'`
   - `implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'`
   - `implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'`
-1. Copy the package `com.galvanize.security` to your project
-   1. Modify the following accordingly for your environment.
-       - `application.properties` - Modify the properties starting with `security.jwt.*` noting that `security.jwt.secret` must match the scret used in your provider.
-         - `deploy.yaml` env entry
-           ```java
-           - name: JWT_SECRET_KEY
-             valueFrom:
-             secretKeyRef:
-               name: jwt-key-secret
-               key: JWT_SECRET_KEY
-           ```
-       - `WebSecurityConfig` - Modify the `configure()` and `corsConfiguration()` methods according to your environment.
+1. Copy the package `com.galvanize.security` to your project 
+2. Modify the following accordingly for your environment.
+    - `application.properties` - Modify the properties starting with `security.jwt.*` noting that `security.jwt.secret` must match the scret used in your provider.
+      - `deploy.yaml` env entry
+        ```java
+        - name: JWT_SECRET_KEY
+          valueFrom:
+          secretKeyRef:
+            name: jwt-key-secret
+            key: JWT_SECRET_KEY
+        ```
+    - Add a bean configuration for `JwtProperties` (note: it cannot be in WebSecurityConfig)
+      ```java
+        @Bean
+        public JwtProperties jwtProperties(){
+            return new JwtProperties();
+        }
+      ```
+    - `WebSecurityConfig` - Modify the `configure()` and `corsConfiguration()` methods according to your environment.
