@@ -31,6 +31,7 @@ can be found in `com.galvanize.security.WebSecurityConfig`, among the rest of th
 1. Copy the package `com.galvanize.security` to your project 
 2. Modify the following accordingly for your environment.
     - `application.properties` - Modify the properties starting with `security.jwt.*` noting that `security.jwt.secret` must match the scret used in your provider.
+      - `application.properties` entry `security.jwt.secret=${JWT_SECRET_KEY}`
       - `deploy.yaml` env entry
         ```java
         - name: JWT_SECRET_KEY
