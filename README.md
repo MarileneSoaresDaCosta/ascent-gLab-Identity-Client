@@ -34,7 +34,7 @@ can be found in `com.galvanize.security.WebSecurityConfig`, among the rest of th
        that `security.jwt.secret` must match the secret used in your provider.
       - `application.properties` entry `security.jwt.secret=${JWT_SECRET_KEY}`
       - `deploy.yaml` env entry
-        ```java
+        ```yaml
         - name: JWT_SECRET_KEY
           valueFrom:
           secretKeyRef:
