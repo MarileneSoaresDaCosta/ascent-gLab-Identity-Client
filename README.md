@@ -59,4 +59,28 @@ now be responsible for adding a user for your tests.
     ```java 
    `testImplementation 'org.springframework.security:spring-security-test'`
    ```
-2. Identify the user on your unit tests with `@WithMockUser` annotation.  See the [Spring documentation](https://docs.spring.io/spring-security/site/docs/4.0.x/apidocs/org/springframework/security/test/context/support/WithMockUser.html) for all of it's capabilities. 
+2. Identify the user on your unit tests with `@WithMockUser` annotation.  See the [Spring documentation](https://docs.spring.io/spring-security/site/docs/4.2.x/reference/html/test-method.html) for all of it's capabilities.
+
+## CORs
+Details comming Soon!
+
+[MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors)
+[Spring - Enabling Cross Origin Requests for a RESTful Web Service](https://spring.io/guides/gs/rest-service-cors/)
+
+Add the following to your WebSecurityConfig
+```java 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOriginPattern("*");
+        configuration.setAllowedMethods(List.of("*"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(Arrays.asList("*","Authorization"));
+        configuration.setAllowCredentials(true);
+        configuration.applyPermitDefaultValues();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+```
