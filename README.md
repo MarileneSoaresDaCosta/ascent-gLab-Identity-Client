@@ -64,8 +64,8 @@ now be responsible for adding a user for your tests.
 ## CORs
 Details comming Soon!
 
-[MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors)
-[Spring - Enabling Cross Origin Requests for a RESTful Web Service](https://spring.io/guides/gs/rest-service-cors/)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors)
+- [Spring - Enabling Cross Origin Requests for a RESTful Web Service](https://spring.io/guides/gs/rest-service-cors/)
 
 Add the following to your WebSecurityConfig
 ```java 
