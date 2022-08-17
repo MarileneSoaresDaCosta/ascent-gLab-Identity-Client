@@ -28,6 +28,7 @@ can be found in `com.galvanize.security.WebSecurityConfig`, among the rest of th
   - `implementation 'org.springframework.boot:spring-boot-starter-security'`
   - `implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'`
   - `implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'`
+
 1. Copy the package `com.galvanize.security` to your project 
 2. Modify the following accordingly for your environment.
     - `application.properties` - Modify the properties starting with `security.jwt.*` noting 
@@ -42,3 +43,20 @@ can be found in `com.galvanize.security.WebSecurityConfig`, among the rest of th
             key: JWT_SECRET_KEY
         ```
     - `WebSecurityConfig` - Modify the `configure()` and `corsConfiguration()` methods according to your environment.
+
+## Using Method security
+
+You can further restrict access to your endpoints by adding [Spring's Method Security](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html).
+
+
+## Integration and Unit Tests
+
+After adding Security to your test, you will note that any tests that go through the HTTP layer, will fail
+due to an authentication exception.  The test user does not have permission to access the resource. You will 
+now be responsible for adding a user for your tests.
+
+1. Add the Spring security test dependency to your `build.gradle`
+    ```java 
+   `testImplementation 'org.springframework.security:spring-security-test'`
+   ```
+2. Identify the user on your unit tests with `@WithMockUser` annotation.  See the [Spring documentation](https://docs.spring.io/spring-security/site/docs/4.0.x/apidocs/org/springframework/security/test/context/support/WithMockUser.html) for all of it's capabilities. 
